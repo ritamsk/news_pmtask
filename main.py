@@ -45,15 +45,12 @@ for line in train_file:
         dictionary.update({head: tmp_dict})
 
 
-dictionary_uniq = dictionary.copy()
-
 dicts = []
 for head in headings:
-    tmp_dict = dictionary_uniq.get(head)
+    tmp_dict = dictionary.get(head)
     dict_sorted = sorted(tmp_dict.items(), key=operator.itemgetter(1), reverse=True)
     sorted_dict = []
     for i in range(0, len(dict_sorted)):
-        k = dict_sorted[i][0]
         v = dict_sorted[i][1]
         z = dict_sorted[int(len(dict_sorted) * 0.1)][1]
         if v > z:
