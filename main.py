@@ -55,7 +55,6 @@ for head in headings:
     for i in range(0, len(dict_sorted)):
         k = dict_sorted[i][0]
         v = dict_sorted[i][1]
-        # print(k,v)
         z = dict_sorted[int(len(dict_sorted) * 0.1)][1]
         if v > z:
             sorted_dict.append(dict_sorted[i])
@@ -65,7 +64,6 @@ for head in headings:
 
 all = 0
 output_file = open('output.txt', 'w', encoding='utf-8')
-cheking_output_file = open('chekingoutput.txt', 'w', encoding='utf-8')
 start = time.clock()
 for line in test_file:
     line = re.sub(r'[!\.\?,):\-(»«\n]', ' ', line)
@@ -74,7 +72,6 @@ for line in test_file:
     lines.extend(line[1].split(' '))
     predicts = []
     for heads in dicts:
-        #predict = 0
         liness = numpy.array(lines)
         heads = numpy.array(heads)[:,0]
         predict = len(numpy.intersect1d(heads, lines))
@@ -82,14 +79,10 @@ for line in test_file:
     predicts = numpy.array(predicts)
 
     output_file.write(headings[numpy.where(predicts == max(predicts))[0][0]]+'\n')
-    cheking_output_file.write(headings[numpy.where(predicts == max(predicts))[0][0]]+'\t'+line[0]+'\n')
 
-   # print(headings[numpy.where(predicts == max(predicts))[0][0]], predicts, max(predicts), line[0])
-    all+=1
-    print(all)
+    #print(headings[numpy.where(predicts == max(predicts))[0][0]], predicts, max(predicts), line[0])
+    #all+=1
+    #print(all)
 
-end = time.clock()
-print((end-start)/60)
 
 output_file.close()
-cheking_output_file.close()
